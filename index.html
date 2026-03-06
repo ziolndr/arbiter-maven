@@ -541,6 +541,75 @@ body {
 
 /* TIMESTAMP */
 #ts { color: var(--green-dim); }
+
+
+/* MOBILE / TABLET RESPONSIVE */
+@media (max-width: 960px) {
+  .layout {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+  .left-panel {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    overflow-y: visible;
+    height: auto;
+    max-height: none;
+  }
+  .center-panel {
+    width: 100%;
+    overflow-y: visible;
+    height: auto;
+    border-bottom: 1px solid var(--border);
+  }
+  .right-panel {
+    width: 100%;
+    border-left: none;
+    height: auto;
+    overflow-y: visible;
+  }
+  .scenario-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    padding: 8px;
+  }
+  .nav-status { display: none; }
+  .banner {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    padding: 5px 10px;
+    white-space: normal;
+    text-align: center;
+  }
+  .scenario-detail { padding: 16px; }
+  .results-content { padding: 12px; }
+  .status-footer {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .scenario-list { grid-template-columns: 1fr; }
+  .banner {
+    font-size: 8px;
+    letter-spacing: 0.04em;
+  }
+  .detail-header h2 { font-size: 16px; }
+  .feed-content { font-size: 10px; }
+  .coa-text { font-size: 10px; }
+  .rank-label { font-size: 10px; }
+  .analyze-btn { font-size: 11px; padding: 12px; }
+  .perspective-toggle { padding: 9px 0; }
+  .toggle-label .role { font-size: 12px; }
+  .nav { padding: 10px 14px; }
+  .nav-logo .wordmark { font-size: 13px; }
+}
 </style>
 </head>
 <body>
