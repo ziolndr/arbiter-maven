@@ -7,599 +7,118 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --green: #00ff41;
-  --green-dim: #00cc33;
-  --green-dark: #003310;
-  --blue: #0038FF;
-  --amber: #ffb300;
-  --red: #ff3333;
-  --white: #e8e8e8;
-  --dim: #666;
-  --border: #1a1a1a;
-  --surface: #0a0a0a;
-  --panel: #0d0d0d;
-  --black: #000;
+  --green: #00ff41; --green-dim: #00cc33; --green-dark: #003310;
+  --blue: #0038FF; --amber: #ffb300; --red: #ff3333;
+  --white: #e8e8e8; --dim: #666; --border: #1a1a1a;
+  --surface: #0a0a0a; --panel: #0d0d0d; --black: #000;
 }
-
-body {
-  font-family: 'IBM Plex Mono', monospace;
-  background: var(--black);
-  color: var(--white);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* TOP BANNER */
-.banner {
-  background: #00aa00;
-  color: #000;
-  text-align: center;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  padding: 6px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-/* NAV */
-.nav {
-  background: #0a0a0a;
-  border-bottom: 1px solid #1a1a1a;
-  padding: 12px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.nav-logo .wordmark {
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--white);
-}
-
-.nav-logo .badge {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: #000;
-  background: var(--green);
-  padding: 2px 7px;
-  border-radius: 2px;
-}
-
-.nav-status {
-  display: flex;
-  gap: 24px;
-  font-size: 10px;
-  color: var(--dim);
-  letter-spacing: 0.08em;
-}
-
+body { font-family: 'IBM Plex Mono', monospace; background: var(--black); color: var(--white); min-height: 100vh; overflow-x: hidden; }
+.banner { background: #00aa00; color: #000; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; padding: 6px; position: sticky; top: 0; z-index: 100; }
+.nav { background: #0a0a0a; border-bottom: 1px solid #1a1a1a; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { display: flex; align-items: center; gap: 12px; }
+.nav-logo .wordmark { font-size: 15px; font-weight: 700; letter-spacing: 0.1em; color: var(--white); }
+.nav-logo .badge { font-size: 9px; font-weight: 600; letter-spacing: 0.15em; color: #000; background: var(--green); padding: 2px 7px; border-radius: 2px; }
+.nav-status { display: flex; gap: 24px; font-size: 10px; color: var(--dim); letter-spacing: 0.08em; }
 .nav-status .live { color: var(--green); }
-
-/* MAIN LAYOUT */
-.layout {
-  display: grid;
-  grid-template-columns: 280px 1fr 320px;
-  height: calc(100vh - 64px);
-  overflow: hidden;
-}
-
-/* LEFT PANEL - SCENARIOS */
-.left-panel {
-  background: var(--panel);
-  border-right: 1px solid var(--border);
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.panel-header {
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--border);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: var(--dim);
-  text-transform: uppercase;
-}
-
+.layout { display: grid; grid-template-columns: 280px 1fr 320px; height: calc(100vh - 64px); overflow: hidden; }
+.left-panel { background: var(--panel); border-right: 1px solid var(--border); overflow-y: auto; display: flex; flex-direction: column; }
+.panel-header { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 9px; font-weight: 600; letter-spacing: 0.15em; color: var(--dim); text-transform: uppercase; }
 .scenario-list { padding: 8px; }
-
-.scenario-item {
-  padding: 12px 14px;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  cursor: pointer;
-  margin-bottom: 4px;
-  transition: all 0.15s;
-}
-
+.scenario-item { padding: 12px 14px; border: 1px solid transparent; border-radius: 3px; cursor: pointer; margin-bottom: 4px; transition: all 0.15s; }
 .scenario-item:hover { background: #111; border-color: #222; }
-
-.scenario-item.active {
-  background: #0a1a0a;
-  border-color: var(--green-dim);
-}
-
-.scenario-item .s-label {
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  color: var(--dim);
-  margin-bottom: 4px;
-  text-transform: uppercase;
-}
-
+.scenario-item.active { background: #0a1a0a; border-color: var(--green-dim); }
+.scenario-item .s-label { font-size: 9px; letter-spacing: 0.12em; color: var(--dim); margin-bottom: 4px; text-transform: uppercase; }
 .scenario-item.active .s-label { color: var(--green-dim); }
-
-.scenario-item .s-title {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--white);
-  margin-bottom: 6px;
-  line-height: 1.4;
-}
-
-.scenario-item .s-meta {
-  font-size: 10px;
-  color: var(--dim);
-  line-height: 1.5;
-}
-
-.priority-tag {
-  display: inline-block;
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  padding: 1px 6px;
-  border-radius: 2px;
-  margin-top: 6px;
-}
-
+.scenario-item .s-title { font-size: 12px; font-weight: 600; color: var(--white); margin-bottom: 6px; line-height: 1.4; }
+.scenario-item .s-meta { font-size: 10px; color: var(--dim); line-height: 1.5; }
+.priority-tag { display: inline-block; font-size: 8px; font-weight: 700; letter-spacing: 0.1em; padding: 1px 6px; border-radius: 2px; margin-top: 6px; }
 .priority-high { background: rgba(255,51,51,0.15); color: var(--red); border: 1px solid rgba(255,51,51,0.3); }
 .priority-med { background: rgba(255,179,0,0.15); color: var(--amber); border: 1px solid rgba(255,179,0,0.3); }
 .priority-info { background: rgba(0,56,255,0.15); color: #6699ff; border: 1px solid rgba(0,56,255,0.3); }
-
-/* PERSPECTIVES */
-.perspectives-section {
-  padding: 14px 16px;
-  border-top: 1px solid var(--border);
-  margin-top: auto;
-}
-
-.perspectives-section .panel-header {
-  padding: 0;
-  border: none;
-  margin-bottom: 10px;
-}
-
-.perspective-toggle {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 7px 0;
-  cursor: pointer;
-  border-bottom: 1px solid #111;
-}
-
+.perspectives-section { padding: 14px 16px; border-top: 1px solid var(--border); margin-top: auto; }
+.perspectives-section .panel-header { padding: 0; border: none; margin-bottom: 10px; }
+.perspective-toggle { display: flex; align-items: center; gap: 10px; padding: 7px 0; cursor: pointer; border-bottom: 1px solid #111; }
 .perspective-toggle:last-child { border: none; }
-
-.toggle-box {
-  width: 14px;
-  height: 14px;
-  border: 1px solid #333;
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: all 0.15s;
-}
-
-.toggle-box.checked {
-  background: var(--green-dark);
-  border-color: var(--green-dim);
-}
-
-.toggle-box.checked::after {
-  content: '✓';
-  font-size: 9px;
-  color: var(--green);
-}
-
-.toggle-label {
-  font-size: 10px;
-  color: var(--dim);
-  line-height: 1.3;
-}
-
+.toggle-box { width: 14px; height: 14px; border: 1px solid #333; border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; }
+.toggle-box.checked { background: var(--green-dark); border-color: var(--green-dim); }
+.toggle-box.checked::after { content: '✓'; font-size: 9px; color: var(--green); }
+.toggle-label { font-size: 10px; color: var(--dim); line-height: 1.3; }
 .toggle-label .role { color: var(--white); font-size: 11px; display: block; }
-
-/* CENTER - MAIN CONTENT */
-.center-panel {
-  overflow-y: auto;
-  background: var(--surface);
-}
-
-.scenario-detail {
-  padding: 24px;
-}
-
-.detail-header {
-  margin-bottom: 20px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
-}
-
-.detail-header .d-label {
-  font-size: 9px;
-  letter-spacing: 0.15em;
-  color: var(--green-dim);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-
-.detail-header h2 {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--white);
-  margin-bottom: 8px;
-  font-family: 'IBM Plex Sans', sans-serif;
-}
-
-.detail-header .d-meta {
-  font-size: 11px;
-  color: var(--dim);
-  line-height: 1.6;
-}
-
-/* INTEL FEEDS */
-.intel-feeds {
-  margin-bottom: 20px;
-}
-
-.feeds-label {
-  font-size: 9px;
-  letter-spacing: 0.15em;
-  color: var(--dim);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.feed-item {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-left: 3px solid #222;
-  border-radius: 3px;
-  padding: 10px 14px;
-  margin-bottom: 6px;
-}
-
+.center-panel { overflow-y: auto; background: var(--surface); }
+.scenario-detail { padding: 24px; }
+.detail-header { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.detail-header .d-label { font-size: 9px; letter-spacing: 0.15em; color: var(--green-dim); text-transform: uppercase; margin-bottom: 6px; }
+.detail-header h2 { font-size: 18px; font-weight: 600; color: var(--white); margin-bottom: 8px; font-family: 'IBM Plex Sans', sans-serif; }
+.detail-header .d-meta { font-size: 11px; color: var(--dim); line-height: 1.6; }
+.intel-feeds { margin-bottom: 20px; }
+.feeds-label { font-size: 9px; letter-spacing: 0.15em; color: var(--dim); text-transform: uppercase; margin-bottom: 10px; }
+.feed-item { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid #222; border-radius: 3px; padding: 10px 14px; margin-bottom: 6px; }
 .feed-item.sigint { border-left-color: var(--amber); }
 .feed-item.imint { border-left-color: #4499ff; }
 .feed-item.osint { border-left-color: #aa66ff; }
 .feed-item.humint { border-left-color: var(--red); }
 .feed-item.masint { border-left-color: var(--green-dim); }
 .feed-item.drone { border-left-color: #ff6600; }
-
-.feed-type {
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: var(--dim);
-  margin-bottom: 4px;
-  text-transform: uppercase;
-}
-
-.feed-content {
-  font-size: 11px;
-  color: var(--white);
-  line-height: 1.5;
-}
-
-.feed-conf {
-  font-size: 9px;
-  color: var(--dim);
-  margin-top: 4px;
-}
-
-/* COA CANDIDATES */
+.feed-item.isr { border-left-color: #ff6600; }
+.feed-type { font-size: 8px; font-weight: 700; letter-spacing: 0.15em; color: var(--dim); margin-bottom: 4px; text-transform: uppercase; }
+.feed-content { font-size: 11px; color: var(--white); line-height: 1.5; }
+.feed-conf { font-size: 9px; color: var(--dim); margin-top: 4px; }
 .coa-section { margin-bottom: 20px; }
-
-.coa-label {
-  font-size: 9px;
-  letter-spacing: 0.15em;
-  color: var(--dim);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.coa-item {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  padding: 10px 14px;
-  margin-bottom: 6px;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.coa-num {
-  font-size: 10px;
-  color: var(--dim);
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.coa-text {
-  font-size: 11px;
-  color: var(--white);
-  line-height: 1.5;
-  flex: 1;
-}
-
-/* ANALYZE BUTTON */
-.analyze-btn {
-  width: 100%;
-  padding: 14px;
-  background: #001a00;
-  border: 1px solid var(--green-dim);
-  border-radius: 3px;
-  color: var(--green);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-  transition: all 0.15s;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-
+.coa-label { font-size: 9px; letter-spacing: 0.15em; color: var(--dim); text-transform: uppercase; margin-bottom: 10px; }
+.coa-item { background: var(--panel); border: 1px solid var(--border); border-radius: 3px; padding: 10px 14px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 12px; }
+.coa-num { font-size: 10px; color: var(--dim); flex-shrink: 0; margin-top: 1px; }
+.coa-text { font-size: 11px; color: var(--white); line-height: 1.5; flex: 1; }
+.analyze-btn { width: 100%; padding: 14px; background: #001a00; border: 1px solid var(--green-dim); border-radius: 3px; color: var(--green); font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; cursor: pointer; transition: all 0.15s; text-transform: uppercase; margin-bottom: 20px; }
 .analyze-btn:hover { background: #002a00; }
-.analyze-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.analyze-btn.loading {
-  animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-/* RIGHT PANEL - RESULTS */
-.right-panel {
-  background: var(--panel);
-  border-left: 1px solid var(--border);
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.results-placeholder {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  text-align: center;
-}
-
-.results-placeholder p {
-  font-size: 11px;
-  color: var(--dim);
-  line-height: 1.6;
-}
-
+.analyze-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.analyze-btn.loading { animation: pulse 1s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.right-panel { background: var(--panel); border-left: 1px solid var(--border); overflow-y: auto; display: flex; flex-direction: column; }
+.results-placeholder { flex: 1; display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center; }
+.results-placeholder p { font-size: 11px; color: var(--dim); line-height: 1.6; }
 .results-content { padding: 16px; }
-
-.perspective-result {
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border);
-}
-
+.perspective-result { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
 .perspective-result:last-child { border: none; }
-
-.pr-header {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: var(--dim);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
+.pr-header { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; color: var(--dim); text-transform: uppercase; margin-bottom: 10px; }
 .pr-header span { color: var(--green-dim); }
-
-.rank-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.rank-num {
-  font-size: 10px;
-  color: var(--dim);
-  flex-shrink: 0;
-  width: 14px;
-  margin-top: 2px;
-}
-
+.rank-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+.rank-num { font-size: 10px; color: var(--dim); flex-shrink: 0; width: 14px; margin-top: 2px; }
 .rank-body { flex: 1; min-width: 0; }
-
-.rank-label {
-  font-size: 11px;
-  color: var(--white);
-  line-height: 1.4;
-  margin-bottom: 4px;
-}
-
-.rank-bar-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.rank-bar {
-  flex: 1;
-  height: 3px;
-  background: #1a1a1a;
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.rank-bar-fill {
-  height: 100%;
-  border-radius: 2px;
-  transition: width 0.8s ease;
-  background: var(--green-dim);
-}
-
+.rank-label { font-size: 11px; color: var(--white); line-height: 1.4; margin-bottom: 4px; }
+.rank-bar-wrap { display: flex; align-items: center; gap: 8px; }
+.rank-bar { flex: 1; height: 3px; background: #1a1a1a; border-radius: 2px; overflow: hidden; }
+.rank-bar-fill { height: 100%; border-radius: 2px; transition: width 0.8s ease; background: var(--green-dim); }
 .rank-bar-fill.top { background: var(--green); }
 .rank-bar-fill.low { background: #333; }
-
-.rank-score {
-  font-size: 10px;
-  color: var(--green-dim);
-  flex-shrink: 0;
-  width: 38px;
-  text-align: right;
-}
-
+.rank-score { font-size: 10px; color: var(--green-dim); flex-shrink: 0; width: 38px; text-align: right; }
 .rank-score.top { color: var(--green); font-weight: 600; }
 .rank-score.low { color: var(--dim); }
-
-/* DIVERGENCE ALERT */
-.divergence-alert {
-  background: rgba(255,179,0,0.08);
-  border: 1px solid rgba(255,179,0,0.25);
-  border-radius: 3px;
-  padding: 10px 12px;
-  margin: 12px 0;
-  font-size: 10px;
-  color: var(--amber);
-  line-height: 1.5;
-}
-
-.divergence-alert .d-title {
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-  font-size: 9px;
-}
-
-/* STATUS BAR */
-.status-footer {
-  padding: 10px 16px;
-  border-top: 1px solid var(--border);
-  font-size: 9px;
-  color: var(--dim);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
+.divergence-alert { background: rgba(255,179,0,0.08); border: 1px solid rgba(255,179,0,0.25); border-radius: 3px; padding: 10px 12px; margin: 12px 0; font-size: 10px; color: var(--amber); line-height: 1.5; }
+.divergence-alert .d-title { font-weight: 600; letter-spacing: 0.08em; margin-bottom: 4px; text-transform: uppercase; font-size: 9px; }
+.status-footer { padding: 10px 16px; border-top: 1px solid var(--border); font-size: 9px; color: var(--dim); display: flex; justify-content: space-between; align-items: center; }
 .status-footer .engine { color: var(--green-dim); }
-
-/* LOADING SPINNER */
-.spinner {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border: 1px solid #333;
-  border-top-color: var(--green);
-  border-radius: 50%;
-  animation: spin 0.6s linear infinite;
-  margin-right: 6px;
-}
-
+.spinner { display: inline-block; width: 10px; height: 10px; border: 1px solid #333; border-top-color: var(--green); border-radius: 50%; animation: spin 0.6s linear infinite; margin-right: 6px; }
 @keyframes spin { to { transform: rotate(360deg); } }
-
-/* SCROLLBAR */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #000; }
 ::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
-
-/* TIMESTAMP */
 #ts { color: var(--green-dim); }
-
-
-/* MOBILE / TABLET RESPONSIVE */
 @media (max-width: 960px) {
-  .layout {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    overflow: visible;
-  }
-  .left-panel {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-    overflow-y: visible;
-    height: auto;
-    max-height: none;
-  }
-  .center-panel {
-    width: 100%;
-    overflow-y: visible;
-    height: auto;
-    border-bottom: 1px solid var(--border);
-  }
-  .right-panel {
-    width: 100%;
-    border-left: none;
-    height: auto;
-    overflow-y: visible;
-  }
-  .scenario-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    padding: 8px;
-  }
+  .layout { display: flex; flex-direction: column; height: auto; overflow: visible; }
+  .left-panel { width: 100%; border-right: none; border-bottom: 1px solid var(--border); overflow-y: visible; height: auto; max-height: none; }
+  .center-panel { width: 100%; overflow-y: visible; height: auto; border-bottom: 1px solid var(--border); }
+  .right-panel { width: 100%; border-left: none; height: auto; overflow-y: visible; }
+  .scenario-list { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 8px; }
   .nav-status { display: none; }
-  .banner {
-    font-size: 9px;
-    letter-spacing: 0.08em;
-    padding: 5px 10px;
-    white-space: normal;
-    text-align: center;
-  }
+  .banner { font-size: 9px; letter-spacing: 0.08em; padding: 5px 10px; white-space: normal; text-align: center; }
   .scenario-detail { padding: 16px; }
   .results-content { padding: 12px; }
-  .status-footer {
-    flex-direction: column;
-    gap: 4px;
-    text-align: center;
-  }
+  .status-footer { flex-direction: column; gap: 4px; text-align: center; }
 }
-
 @media (max-width: 600px) {
   .scenario-list { grid-template-columns: 1fr; }
-  .banner {
-    font-size: 8px;
-    letter-spacing: 0.04em;
-  }
+  .banner { font-size: 8px; letter-spacing: 0.04em; }
   .detail-header h2 { font-size: 16px; }
   .feed-content { font-size: 10px; }
   .coa-text { font-size: 10px; }
@@ -630,50 +149,44 @@ body {
 </nav>
 
 <div class="layout">
-
-  <!-- LEFT PANEL -->
   <div class="left-panel">
     <div class="panel-header">Active Scenarios</div>
-
     <div class="scenario-list">
-
       <div class="scenario-item active" onclick="selectScenario(0)">
         <div class="s-label">Scenario 01 · Logistics</div>
         <div class="s-title">Tanker Truck Cluster — Grid 34U EF</div>
         <div class="s-meta">3 detections · Quantum Systems MOSAIC · Baltic region</div>
         <span class="priority-tag priority-high">HIGH PRIORITY</span>
       </div>
-
       <div class="scenario-item" onclick="selectScenario(1)">
         <div class="s-label">Scenario 02 · Multi-INT</div>
         <div class="s-title">Baltic Sea Vessel Activity — AIS Dark</div>
         <div class="s-meta">5 sources · SIGINT + IMINT + OSINT + HUMINT + MASINT</div>
         <span class="priority-tag priority-high">HIGH PRIORITY</span>
       </div>
-
       <div class="scenario-item" onclick="selectScenario(2)">
         <div class="s-label">Scenario 03 · COA Ranking</div>
         <div class="s-title">dominAI COA Generation — 3 Plans</div>
         <div class="s-meta">Frontal Assault · Flanking Attack · Night Attack</div>
         <span class="priority-tag priority-med">DECISION REQUIRED</span>
       </div>
-
+      <div class="scenario-item" onclick="selectScenario(3)">
+        <div class="s-label">Scenario 04 · ISR / Target Validation</div>
+        <div class="s-title">Aircraft Target Validation — Pre-Strike</div>
+        <div class="s-meta">4 candidates · IMINT + MASINT · $2.5M munition decision</div>
+        <span class="priority-tag priority-high">STRIKE AUTHORIZATION</span>
+      </div>
     </div>
-
     <div class="perspectives-section">
       <div class="panel-header">Analyze From Perspective</div>
       <div id="perspective-toggles"></div>
     </div>
   </div>
 
-  <!-- CENTER PANEL -->
   <div class="center-panel">
-    <div class="scenario-detail" id="scenario-detail">
-      <!-- populated by JS -->
-    </div>
+    <div class="scenario-detail" id="scenario-detail"></div>
   </div>
 
-  <!-- RIGHT PANEL -->
   <div class="right-panel">
     <div class="panel-header">Coherence Rankings</div>
     <div id="results-area">
@@ -686,7 +199,6 @@ body {
       <span id="latency-display">—</span>
     </div>
   </div>
-
 </div>
 
 <script>
@@ -710,7 +222,7 @@ const SCENARIOS = [
       { type: 'DRONE / IMINT', cls: 'drone', content: 'TankerTruck Detection at 34U EF 73436 17695 — vehicle moving NE at 15km/h, same markings, full load indicators, 200m from first detection.', conf: 'Confidence: HIGH · Real-time' },
       { type: 'DRONE / IMINT', cls: 'drone', content: 'TankerTruck Detection at 34U EF 73630 17762 — vehicle stationary, proximity to known adversary logistics node 1.4km NE.', conf: 'Confidence: HIGH · Real-time' },
       { type: 'SIGINT', cls: 'sigint', content: 'Encrypted comms burst consistent with logistics coordination intercepted from grid sector. Pattern matches resupply scheduling traffic.', conf: 'Confidence: MEDIUM · 8min latency' },
-      { type: 'OSINT', cls: 'osint', content: 'No civilian fuel delivery scheduled for sector per local authority coordination. Road in question classified restricted military zone.', conf: 'Confidence: MEDIUM · 45min latency' },
+      { type: 'OSINT', cls: 'osint', content: 'No civilian fuel delivery scheduled for sector per local authority coordination. Road classified restricted military zone.', conf: 'Confidence: MEDIUM · 45min latency' },
     ],
     query_context: '3 tanker trucks detected in restricted military zone, grid 34U EF, proximity to adversary logistics node 1.4km. Encrypted comms consistent with resupply coordination. No civilian delivery scheduled. Drones confirm full fuel load. Decision required on targeting nomination.',
     candidates: [
@@ -729,8 +241,8 @@ const SCENARIOS = [
       { type: 'SIGINT', cls: 'sigint', content: 'Encrypted military communications spike 340% along Baltic corridor. Frequency patterns consistent with naval coordination. Mandarin intercepts noted in secondary band.', conf: 'Confidence: HIGH · 6min latency' },
       { type: 'IMINT', cls: 'imint', content: 'MAXAR: 3 vessels 180-200m length, formation spacing 500m, heading 045°, speed 12kt. No commercial markings visible. Running dark — AIS transponders offline.', conf: 'Confidence: HIGH · 22min latency' },
       { type: 'OSINT', cls: 'osint', content: 'Social media reports of unusual vessel activity near Gotland. Local fishing community reporting vessel challenge on VHF. Posts subsequently deleted.', conf: 'Confidence: LOW · 3hr latency' },
-      { type: 'HUMINT', cls: 'humint', content: 'Port authority contact reports vessels denied entry for inspection at Tallinn. Crew reportedly showed documentation inconsistent with declared cargo manifest.', conf: 'Confidence: MEDIUM · 4hr latency' },
-      { type: 'MASINT', cls: 'masint', content: 'Acoustic signature analysis: propulsion consistent with dual-use research vessel class. However, draft measurement indicates cargo load 40% above declared weight.', conf: 'Confidence: MEDIUM · Real-time' },
+      { type: 'HUMINT', cls: 'humint', content: 'Port authority contact reports vessels denied entry for inspection at Tallinn. Crew showed documentation inconsistent with declared cargo manifest.', conf: 'Confidence: MEDIUM · 4hr latency' },
+      { type: 'MASINT', cls: 'masint', content: 'Acoustic signature analysis: propulsion consistent with dual-use research vessel class. Draft measurement indicates cargo load 40% above declared weight.', conf: 'Confidence: MEDIUM · Real-time' },
     ],
     query_context: 'Three AIS-dark vessels transiting Baltic corridor. Military-pattern encrypted comms spike 340%. IMINT confirms formation transit at military speed. HUMINT: manifest inconsistency at Tallinn. MASINT: undeclared cargo load. Social media reports deleted. Assessment required.',
     candidates: [
@@ -750,7 +262,7 @@ const SCENARIOS = [
       { type: 'dominAI · COA 01', cls: 'imint', content: 'FRONTAL ASSAULT — Direct assault along primary axis. Success probability: 58.07%. Duration: 9h. Initial fire support suppression at 50PPR8365463109. High adversarial impact, high risk factors.', conf: 'Sync Matrix: MCRP 3-30.7 p.157' },
       { type: 'dominAI · COA 02', cls: 'sigint', content: 'FLANKING ATTACK — Envelopment maneuver via secondary axis. Avoids primary defensive positions. Requires callsign_7 reposition to 50PPR8491259535. Longer duration, lower initial exposure.', conf: 'Sync Matrix: MCRP 3-30.7 p.15' },
       { type: 'dominAI · COA 03', cls: 'osint', content: 'NIGHT ATTACK — Reduced visibility assault. Exploits adversary degraded night-vision capability. High coordination requirement. Delays action 6-8hr pending darkness window.', conf: 'Sync Matrix: MCRP 3-30.7 p.16' },
-      { type: 'MISSION CONTEXT', cls: 'masint', content: 'Objective: seize logistics node before adversary resupply window closes in 14hr. Force: company-level, 6 callsigns. Constraints: minimize civilian infrastructure damage. ROE: escalation of force required before lethal action.', conf: 'Commander\'s intent loaded' },
+      { type: 'MISSION CONTEXT', cls: 'masint', content: 'Objective: seize logistics node before adversary resupply window closes in 14hr. Force: company-level, 6 callsigns. Constraints: minimize civilian infrastructure damage. ROE: escalation of force required before lethal action.', conf: "Commander's intent loaded" },
     ],
     query_context: 'Three COAs generated by dominAI for company-level assault on adversary logistics node. 14hr window before resupply. ROE requires escalation of force. Minimize civilian infrastructure damage. Rank COAs by coherence with mission success, ROE compliance, force protection, and doctrine.',
     candidates: [
@@ -760,113 +272,100 @@ const SCENARIOS = [
       'COA 04 — Halt and request additional ISR before committing any COA',
       'COA 05 — Non-kinetic approach: route denial and isolation without direct assault',
     ]
+  },
+  {
+    label: 'SCENARIO 04 · ISR / TARGET VALIDATION',
+    title: 'Aircraft Target Validation — Pre-Strike Coherence Check',
+    meta: '$2.5M munition authorization pending · IMINT + MASINT · 4 candidate assessments',
+    feeds: [
+      { type: 'IMINT · SAR OVERPASS', cls: 'isr', content: 'Fixed-wing silhouette detected at hardstand position. No positional change across 14-day observation window. Painted markings consistent with fighter-type airframe. No associated ramp activity or vehicle movement observed.', conf: 'Confidence: HIGH · 6hr latency' },
+      { type: 'MASINT · THERMAL', cls: 'masint', content: 'No thermal signature detected at target position. Engine heat bloom absent across all collection windows including overnight. Ground surface temperature consistent with ambient — no propulsion activity.', conf: 'Confidence: HIGH · Real-time' },
+      { type: 'IMINT · PATTERN OF LIFE', cls: 'imint', content: 'Zero ground crew activity observed at target hardstand across 14-day window. No fuel truck cycling. No maintenance vehicle presence. No crew transport or personnel ingress/egress. Shadow geometry consistent with flat two-dimensional object.', conf: 'Confidence: HIGH · 14-day window' },
+      { type: 'SIGINT', cls: 'sigint', content: 'No air traffic control coordination associated with target position. No squadron communications pattern linked to hardstand. Frequency activity consistent with administrative use only — no operational sortie scheduling.', conf: 'Confidence: MEDIUM · 48hr window' },
+    ],
+    query_context: 'indicators of high-value kinetic target: operational tempo, active logistics support, fuel consumption patterns, crew rotation schedules, maintenance activity, integrated air defense positioning',
+    candidates: [
+      'Active asset: daily sortie generation, ground crew present, fuel trucks cycling, maintenance crews on flight line, integrated with active air defense network',
+      'Static decoy: fixed position unchanged across 14-day observation window, painted outline on tarmac, no associated ground activity, no shadow variance, no vehicle movement',
+      'Degraded asset: present on ramp, no sortie activity in 30 days, cannibalized for parts, removed from active squadron order of battle',
+      'Previously struck: crater evidence from prior engagement, no reconstruction activity, removed from targeting database',
+    ]
   }
 ];
 
 let activeScenario = 0;
-let isRunning = false;
 
 function selectScenario(idx) {
   activeScenario = idx;
-  document.querySelectorAll('.scenario-item').forEach((el, i) => {
-    el.classList.toggle('active', i === idx);
-  });
+  document.querySelectorAll('.scenario-item').forEach((el, i) => el.classList.toggle('active', i === idx));
   renderScenario();
-  // Clear results
-  document.getElementById('results-area').innerHTML = `
-    <div class="results-placeholder">
-      <p>Select perspectives and run analysis.<br><br>ARBITER will rank candidates by semantic coherence — deterministically — from each selected perspective.</p>
-    </div>`;
+  document.getElementById('results-area').innerHTML = `<div class="results-placeholder"><p>Select perspectives and run analysis.<br><br>ARBITER will rank candidates by semantic coherence — deterministically — from each selected perspective.</p></div>`;
   document.getElementById('latency-display').textContent = '—';
 }
 
 function renderScenario() {
   const s = SCENARIOS[activeScenario];
-  let feedsHTML = s.feeds.map(f => `
+  const feedsHTML = s.feeds.map(f => `
     <div class="feed-item ${f.cls}">
       <div class="feed-type">${f.type}</div>
       <div class="feed-content">${f.content}</div>
       <div class="feed-conf">${f.conf}</div>
     </div>`).join('');
-
-  let candidatesHTML = s.candidates.map((c, i) => `
+  const candidatesHTML = s.candidates.map((c, i) => `
     <div class="coa-item">
       <div class="coa-num">${String(i+1).padStart(2,'0')}</div>
       <div class="coa-text">${c}</div>
     </div>`).join('');
-
   document.getElementById('scenario-detail').innerHTML = `
     <div class="detail-header">
       <div class="d-label">${s.label}</div>
       <h2>${s.title}</h2>
       <div class="d-meta">${s.meta}</div>
     </div>
-
     <div class="intel-feeds">
       <div class="feeds-label">Intelligence Feeds / Inputs</div>
       ${feedsHTML}
     </div>
-
     <div class="coa-section">
       <div class="coa-label">Candidates for Coherence Ranking</div>
       ${candidatesHTML}
     </div>
-
-    <button class="analyze-btn" id="analyze-btn" onclick="runAnalysis()">
-      ▶ Run Coherence Analysis
-    </button>
-
+    <button class="analyze-btn" id="analyze-btn" onclick="runAnalysis()">▶ Run Coherence Analysis</button>
     <div style="font-size:10px;color:var(--dim);line-height:1.6;padding:0 2px;">
-      ARBITER will score each candidate against the operational context from each selected perspective. 
-      Same inputs → same scores, every invocation. No LLMs. No probabilistic drift.
-    </div>
-  `;
+      ARBITER will score each candidate against the operational context from each selected perspective. Same inputs → same scores, every invocation. No LLMs. No probabilistic drift.
+    </div>`;
 }
 
 function renderPerspectiveToggles() {
   document.getElementById('perspective-toggles').innerHTML = PERSPECTIVES.map((p, i) => `
     <div class="perspective-toggle" onclick="togglePerspective(${i})">
       <div class="toggle-box ${p.checked ? 'checked' : ''}" id="toggle-${i}"></div>
-      <div class="toggle-label">
-        <span class="role">${p.role}</span>
-      </div>
+      <div class="toggle-label"><span class="role">${p.role}</span></div>
     </div>`).join('');
 }
 
 function togglePerspective(i) {
   PERSPECTIVES[i].checked = !PERSPECTIVES[i].checked;
-  const box = document.getElementById(`toggle-${i}`);
-  box.classList.toggle('checked', PERSPECTIVES[i].checked);
+  document.getElementById(`toggle-${i}`).classList.toggle('checked', PERSPECTIVES[i].checked);
 }
 
 async function runAnalysis() {
   const selected = PERSPECTIVES.filter(p => p.checked);
-  if (!selected.length) {
-    alert('Select at least one perspective.');
-    return;
-  }
-
+  if (!selected.length) { alert('Select at least one perspective.'); return; }
   const btn = document.getElementById('analyze-btn');
-  btn.disabled = true;
-  btn.classList.add('loading');
+  btn.disabled = true; btn.classList.add('loading');
   btn.innerHTML = '<span class="spinner"></span>Running Coherence Analysis...';
-  isRunning = true;
-
   const s = SCENARIOS[activeScenario];
-  const resultsArea = document.getElementById('results-area');
-  resultsArea.innerHTML = `<div class="results-content"><div style="font-size:10px;color:var(--dim);padding:8px 0;"><span class="spinner"></span>Querying ARBITER engine...</div></div>`;
-
+  document.getElementById('results-area').innerHTML = `<div class="results-content"><div style="font-size:10px;color:var(--dim);padding:8px 0;"><span class="spinner"></span>Querying ARBITER engine...</div></div>`;
   const allResults = [];
   const startTime = Date.now();
-
   for (const p of selected) {
     const query = `${p.query_prefix} ${s.query_context}`;
     try {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 15000);
       const res = await fetch(ARBITER_API, {
-        method: 'POST',
-        mode: 'cors',
+        method: 'POST', mode: 'cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query, candidates: s.candidates }),
         signal: controller.signal
@@ -876,89 +375,57 @@ async function runAnalysis() {
       const ranked = (data.all || []).sort((a, b) => b.score - a.score);
       allResults.push({ perspective: p, ranked });
     } catch(e) {
-      console.error('ARBITER fetch error:', e);
       allResults.push({ perspective: p, ranked: null, error: true, errorMsg: e.message });
     }
   }
-
   const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
   document.getElementById('latency-display').textContent = `${elapsed}s · ${selected.length} perspectives`;
-
-  renderResults(allResults, s.candidates);
-
-  btn.disabled = false;
-  btn.classList.remove('loading');
+  renderResults(allResults);
+  btn.disabled = false; btn.classList.remove('loading');
   btn.innerHTML = '↺ Re-run Analysis';
-  isRunning = false;
 }
 
-function renderResults(allResults, candidates) {
-  // Check for perspective divergence on top candidate
+function renderResults(allResults) {
   const topChoices = allResults.filter(r => r.ranked && r.ranked.length).map(r => r.ranked[0].text);
-  const uniqueTops = new Set(topChoices);
-  const hasDivergence = uniqueTops.size > 1;
-
+  const hasDivergence = new Set(topChoices).size > 1;
   let html = '<div class="results-content">';
-
   if (hasDivergence) {
-    const divergeList = [...uniqueTops].map(c => `"${c.substring(0,40)}..."`).join(' vs ');
-    html += `<div class="divergence-alert">
-      <div class="d-title">⚠ Perspective Divergence Detected</div>
-      Different perspectives rank different COAs first. Coalition consensus requires arbitration before commander acts.
-    </div>`;
+    html += `<div class="divergence-alert"><div class="d-title">⚠ Perspective Divergence Detected</div>Different perspectives rank different COAs first. Coalition consensus requires arbitration before commander acts.</div>`;
   }
-
   for (const result of allResults) {
     if (result.error) {
-      html += `<div class="perspective-result">
-        <div class="pr-header"><span>${result.perspective.role}</span></div>
-        <div style="font-size:10px;color:var(--red);">API error — check connection</div>
-      </div>`;
+      html += `<div class="perspective-result"><div class="pr-header"><span>${result.perspective.role}</span></div><div style="font-size:10px;color:var(--red);">API error — check connection</div></div>`;
       continue;
     }
-
     const maxScore = result.ranked[0]?.score || 1;
-
-    html += `<div class="perspective-result">
-      <div class="pr-header">FROM: <span>${result.perspective.role}</span></div>`;
-
+    html += `<div class="perspective-result"><div class="pr-header">FROM: <span>${result.perspective.role}</span></div>`;
     result.ranked.forEach((item, i) => {
       const pct = Math.max(0, (item.score / maxScore) * 100);
-      const isTop = i === 0;
-      const isLow = item.score < 0.2;
-      const scoreClass = isTop ? 'top' : isLow ? 'low' : '';
-      const barClass = isTop ? 'top' : isLow ? 'low' : '';
+      const isTop = i === 0, isLow = item.score < 0.2;
+      const cls = isTop ? 'top' : isLow ? 'low' : '';
       const shortLabel = item.text.length > 55 ? item.text.substring(0, 55) + '…' : item.text;
-
       html += `<div class="rank-item">
         <div class="rank-num">${i+1}</div>
         <div class="rank-body">
           <div class="rank-label">${shortLabel}</div>
           <div class="rank-bar-wrap">
-            <div class="rank-bar"><div class="rank-bar-fill ${barClass}" style="width:${pct}%"></div></div>
-            <div class="rank-score ${scoreClass}">${item.score.toFixed(3)}</div>
+            <div class="rank-bar"><div class="rank-bar-fill ${cls}" style="width:${pct}%"></div></div>
+            <div class="rank-score ${cls}">${item.score.toFixed(3)}</div>
           </div>
         </div>
       </div>`;
     });
-
     html += `</div>`;
   }
-
   html += '</div>';
   document.getElementById('results-area').innerHTML = html;
 }
 
-// Clock
 function updateClock() {
-  const now = new Date();
-  document.getElementById('ts').textContent =
-    now.toISOString().replace('T',' ').substring(0,19) + ' UTC';
+  document.getElementById('ts').textContent = new Date().toISOString().replace('T',' ').substring(0,19) + ' UTC';
 }
 setInterval(updateClock, 1000);
 updateClock();
-
-// Init
 renderPerspectiveToggles();
 renderScenario();
 </script>
